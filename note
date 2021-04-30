@@ -1,0 +1,35 @@
+[] find a source of data
+	http://wpi.kkp.go.id/info_harga_ikan/[API][data collector][region]
+	https://dislautkan.jogjaprov.go.id/web/hargaikan_laut [HTML][data collector][jogja]
+	https://www.tokopedia.com/find/ikan-laut-segar [API/HTML][marketplace][indonesia]
+	https://infopangan.jakarta.go.id/publik/dashboard/28 [API][data collector][jakarta]
+	http://fishinfojatim.net/dashboard/dashharga [HTML][data collector][east java]
+ 	https://money.kompas.com/read/2021/03/10/155706126/harga-ikan-melonjak-perindo-sebut-baru-bisa-turun-pada-mei-juni-2021?page=all [HTML][article][common marketplace]
+	https://www.liputan6.com/tag/harga-ikan [HTML][article][common marketplace]
+	https://www.idxchannel.com/economics/harga-ikan-naik-rp1000-diprediksi-turun-saat-idul-fitri [HTML][article][common marketplace]
+	https://finance.detik.com/berita-ekonomi-bisnis/d-5498480/siap-siap-harga-ikan-diramal-naik-hingga-15-di-minggu-pertama-puasa [HTML][article][common marketplace]
+	https://industri.kontan.co.id/news/perindo-harga-ikan-akan-kembali-stabil-pada-kuartal-ii-2021 [HTML][article][common marketplace]
+[] classify the source of data
+	http://wpi.kkp.go.id/info_harga_ikan/ [API][data collector][region]
+	https://infopangan.jakarta.go.id/publik/dashboard/28 [API][data collector][jakarta]
+	https://dislautkan.jogjaprov.go.id/web/hargaikan_laut [HTML][data collector][jogja]
+	http://fishinfojatim.net/dashboard/dashharga [HTML][data collector][east java]
+
+	https://money.kompas.com/read/2021/03/10/155706126/harga-ikan-melonjak-perindo-sebut-baru-bisa-turun-pada-mei-juni-2021?page=all [HTML][article][common marketplace]
+	https://www.liputan6.com/tag/harga-ikan [HTML][article][common marketplace]
+	https://www.idxchannel.com/economics/harga-ikan-naik-rp1000-diprediksi-turun-saat-idul-fitri [HTML][article][common marketplace]
+	https://finance.detik.com/berita-ekonomi-bisnis/d-5498480/siap-siap-harga-ikan-diramal-naik-hingga-15-di-minggu-pertama-puasa [HTML][article][common marketplace]
+	https://industri.kontan.co.id/news/perindo-harga-ikan-akan-kembali-stabil-pada-kuartal-ii-2021 [HTML][article][common marketplace]
+[] modeling dataset
+[] start code
+
+http://fishinfojatim.net/dashboard/dashharga?tgl1=10/11/2020&tgl2=25/04/2021&ikan=all&pasar=null&jenis=0&kota=all
+ttps://www.siskaperbapo.com/harga/tabel
+https://dislautkan.jogjaprov.go.id/web/hargaikan_laut
+https://infopangan.jakarta.go.id/publik/dashboard/28
+https://uptpasar.cimahikota.go.id/
+https://sikap.pemkomedan.go.id/?modul=harga
+https://infopasar.denpasarkota.go.id/
+https://pertanian.pontianakkota.go.id/komoditi.html
+https://laminetam.id/tabel-harga/daerah 
+http://wpi.kkp.go.id/info_harga_ikan/

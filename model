@@ -1,0 +1,9 @@
+{
+    "komoditas": "LELE",
+    "daerah": "REGION",
+    "harga": FLOAT32,
+    "source": "URL",
+    "method": "API/SCRAPING",
+    "data-type": "data-collector, marketplace, article",
+    "tanggal": "",
+}
