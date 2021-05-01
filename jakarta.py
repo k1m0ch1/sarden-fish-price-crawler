@@ -63,7 +63,7 @@ while True:
         data = getData.json()['data']
 
         for market in data:
-            async_list = []
+            
             dataModel['daerah'] = market['name']
             bar = Bar(f'Processing to get {dataModel["daerah"]}', max=len(market['series']))
             for day, price in market['series'].items():

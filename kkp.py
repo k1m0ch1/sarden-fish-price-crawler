@@ -16,6 +16,21 @@ query = {
     "_": datetime.strptime("2021-02-04", "%Y-%m-%d").date()
 }
 
+dataModel = {
+    "komoditas": "",
+    "daerah": "",
+    "harga": 0,
+    "source": "URL",
+    "source-slug": "",
+    "method": "API/SCRAPING",
+    "data-type": "DATACOLLECTOR/MARKETPLACE/ARTICLE",
+    "tanggal": datetime.now().date().strftime("%Y-%m-%d"),
+}
+
+if len(sys.argv) > 1:
+    dataModel["tanggal"] = sys.argv[1]
+    endDate = datetime.strptime(sys.argv[2], "%Y-%m-%d").date()
+
 data = []
 
 WPI_COMMODITIES = [

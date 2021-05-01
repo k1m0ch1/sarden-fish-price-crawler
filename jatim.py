@@ -26,6 +26,11 @@ source_slug = "FSH-JTM"
 method = "SCRAPING"
 data_type = "DATACOLLECTOR"
 
+if len(sys.argv) > 1:
+    dataModel["tanggal"] = sys.argv[1]
+    endDate = datetime.strptime(sys.argv[2], "%Y-%m-%d").date()
+
+
 while True:
     today_convert = today_convert - timedelta(days=1)
     today_format = today_convert.strftime("%d/%m/%Y")
@@ -40,7 +45,7 @@ while True:
         'jenis' : '0',
         'kota' : 'all'
     }
-    getData = requests.get(URL, params=query)
+    getData = requests.get(URL)
 
     if getData.status_code != 200:
         print("ERROR")
