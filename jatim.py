@@ -7,36 +7,33 @@ from progress.bar import Bar
 from requests.auth import HTTPBasicAuth
 
 import config
+from lib import push
 
 dataModel = {
     "komoditas": "LELE",
     "daerah": "REGION",
     "harga": 0,
-    "source": "URL",
-    "source-slug": "",
-    "method": "API/SCRAPING",
-    "data-type": "DATACOLLECTOR/MARKETPLACE/ARTICLE",
+    "source": "http://fishinfojatim.net/dashboard/dashharga",
+    "source-slug": "FSH-JTM",
+    "method": "SCRAPING",
+    "data-type": "DATACOLLECTOR",
     "tanggal": "",
 }
 
 today = "2021-01-01"
-today_convert = datetime.strptime(today, "%Y-%m-%d").date() + timedelta(days=1)
-source = "http://fishinfojatim.net/dashboard/dashharga"
-source_slug = "FSH-JTM"
-method = "SCRAPING"
-data_type = "DATACOLLECTOR"
 
 if len(sys.argv) > 1:
-    dataModel["tanggal"] = sys.argv[1]
+    today = sys.argv[1]
     endDate = datetime.strptime(sys.argv[2], "%Y-%m-%d").date()
 
+today_convert = datetime.strptime(today, "%Y-%m-%d").date() + timedelta(days=1)
 
 while True:
     today_convert = today_convert - timedelta(days=1)
     today_format = today_convert.strftime("%d/%m/%Y")
-    if today_convert.strftime("%Y-%m-%d") == "2020-01-01":
+    if today_convert.strftime("%Y-%m-%d") == endDate.strftime("%Y-%m-%d"):
         break
-    URL = f"http://fishinfojatim.net/dashboard/dashharga"
+    URL = dataModel['dataModel']
     query = {
         'tgl1' : {today_format},
         'tgl2' : {today_format},
@@ -45,7 +42,7 @@ while True:
         'jenis' : '0',
         'kota' : 'all'
     }
-    getData = requests.get(URL)
+    getData = requests.get(URL, params=query)
 
     if getData.status_code != 200:
         print("ERROR")
@@ -57,21 +54,12 @@ while True:
     for dataTable in scrapData:
         items = dataTable.find_all("td")
         harga = items[3].get_text().split(",")[0].replace("Rp. ","").replace(".","").replace(" ","")
-        push = requests.post(
-            f"{config.API_URL}{config.ENDPOINT_SAVE_LOG}",
-            auth=HTTPBasicAuth(config.AUTH_USERNAME, config.AUTH_PASSWORD),
-            json={
-                "komoditas": items[1].get_text(),
-                "daerah": items[2].get_text(),
-                "harga": int(harga),
-                "source": source,
-                "source-slug": source_slug,
-                "method": method,
-                "data-type": data_type,
-                "tanggal": today_convert.strftime("%Y-%m-%d")
-            }
-        )
-        if push.status_code != 200:
+        dataModel['komoditas'] = items[1].get_text()
+        dataModel['daerah'] = items[2].get_text()
+        dataModel['harga'] = int(harga)
+        dataModel['tanggal'] = today_convert.strftime("%Y-%m-%d")
+        saveToAPI = push(dataModel)
+        if saveToAPI != 200:
             print("error to save")
         bar.next()
     bar.finish()
