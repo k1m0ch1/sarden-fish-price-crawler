@@ -33,7 +33,7 @@ while True:
     today_format = today_convert.strftime("%d/%m/%Y")
     if today_convert.strftime("%Y-%m-%d") == endDate.strftime("%Y-%m-%d"):
         break
-    URL = dataModel['dataModel']
+    URL = dataModel['source']
     query = {
         'tgl1' : {today_format},
         'tgl2' : {today_format},
