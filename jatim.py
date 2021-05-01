@@ -31,9 +31,16 @@ while True:
     today_format = today_convert.strftime("%d/%m/%Y")
     if today_convert.strftime("%Y-%m-%d") == "2020-01-01":
         break
-    URL = f"http://fishinfojatim.net/dashboard/dashharga?tgl1={today_format}&tgl2={today_format}&ikan=all&pasar=null&jenis=0&kota=all"
-
-    getData = requests.get(URL)
+    URL = f"http://fishinfojatim.net/dashboard/dashharga"
+    query = {
+        'tgl1' : {today_format},
+        'tgl2' : {today_format},
+        'ikan' : 'all',
+        'pasar' : 'null',
+        'jenis' : '0',
+        'kota' : 'all'
+    }
+    getData = requests.get(URL, params=query)
 
     if getData.status_code != 200:
         print("ERROR")
